@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Daily Digest</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,439 +15,270 @@
         
         body {
             font-family: 'Source Serif 4', Georgia, serif;
-            background: #f8f5f0;
+            background: #ffffff;
             color: #1a1a1a;
-            line-height: 1.7;
+            line-height: 1.75;
             min-height: 100vh;
         }
         
-        /* Decorative sunburst */
-        .sunburst {
-            position: fixed;
-            top: -100px;
-            right: -100px;
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, #e8a87c 0%, #f8f5f0 70%);
-            border-radius: 50%;
-            opacity: 0.7;
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        .sunburst-2 {
-            position: fixed;
-            bottom: -150px;
-            left: -100px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, #c4a77d 0%, #f8f5f0 70%);
-            border-radius: 50%;
-            opacity: 0.5;
-            pointer-events: none;
-            z-index: 0;
-        }
-        
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 50px 50px;
-            position: relative;
-            z-index: 1;
+            padding: 50px 40px;
         }
         
-        /* Header */
         header {
+            text-align: center;
             margin-bottom: 40px;
             padding-bottom: 30px;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #eee;
         }
         
         .masthead {
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: 1.8rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
+            font-size: 2.5rem;
+            font-weight: 700;
             color: #1a1a1a;
-            text-transform: uppercase;
         }
         
         .date-line {
             font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
-            color: #666;
-            margin-top: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-        
-        /* Subscribe bar */
-        .subscribe-bar {
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 18px 25px;
-            margin-bottom: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-        
-        .subscribe-label {
-            font-family: 'Inter', sans-serif;
-            color: #555;
-            font-size: 0.9rem;
-        }
-        
-        .subscribe-form {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .subscribe-form input {
-            background: #f8f5f0;
-            border: 1px solid #ddd;
-            padding: 12px 16px;
-            border-radius: 6px;
-            color: #1a1a1a;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            width: 170px;
-        }
-        
-        .subscribe-form input::placeholder {
-            color: #999;
-        }
-        
-        .subscribe-btn {
-            background: #1a1a1a;
-            color: #fff;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 6px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .subscribe-btn:hover {
-            background: #333;
-        }
-        
-        /* Main headline section */
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 60px;
-            align-items: start;
-        }
-        
-        .hero-headline {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            color: #1a1a1a;
-            letter-spacing: -0.02em;
-        }
-        
-        .hero-byline {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
+            font-size: 0.85rem;
             color: #888;
-            margin-top: 20px;
+            margin-top: 8px;
         }
         
-        .hero-content {
-            font-size: 1.05rem;
-            color: #333;
-        }
-        
-        /* Circle text wrap section */
-        .featured-section {
-            position: relative;
-            margin-bottom: 60px;
-        }
-        
-        .circle-wrap {
-            float: left;
-            width: 200px;
-            height: 200px;
-            shape-outside: circle(50%);
-            clip-path: circle(50%);
-            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
-            margin: 0 30px 20px 0;
+        /* Subscribe - minimal */
+        .subscribe-bar {
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
         }
         
-        .circle-wrap svg {
-            width: 100px;
-            height: 100px;
-            fill: #fff;
+        .subscribe-bar input {
+            border: 1px solid #ddd;
+            padding: 10px 14px;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            width: 160px;
         }
         
-        .circle-text {
+        .subscribe-bar button {
+            background: #1a1a1a;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        
+        /* Audio - simple */
+        .audio-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .audio-section h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        /* Main headline */
+        .main-headline {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.15;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        /* Content with dancing character */
+        .content-wrapper {
+            position: relative;
+        }
+        
+        /* Anime character - floats on right */
+        .character {
+            float: right;
+            width: 180px;
+            height: 320px;
+            shape-outside: ellipse(90px 160px at 50% 50%);
+            margin: 0 0 20px 30px;
+        }
+        
+        .character img,
+        .character video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        /* Content flows around */
+        .content {
             font-size: 1.05rem;
             color: #333;
             text-align: justify;
         }
         
-        /* Audio section */
-        .audio-section {
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 25px 30px;
-            margin-bottom: 50px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        .content p {
+            margin-bottom: 20px;
         }
         
-        .audio-section h3 {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
+        .content a {
             color: #1a1a1a;
+            text-decoration: underline;
+            text-decoration-color: #ccc;
+            text-underline-offset: 3px;
         }
         
-        audio {
-            flex: 1;
-            max-width: 400px;
+        .content a:hover {
+            text-decoration-color: #1a1a1a;
         }
         
-        /* Multi-column content */
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-bottom: 50px;
+        /* Section headers */
+        .section-header {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #999;
+            margin: 40px 0 15px;
+            clear: both;
         }
         
-        @media (max-width: 900px) {
-            .hero {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            .hero-headline {
-                font-size: 2.5rem;
-            }
-            .content-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .circle-wrap {
-                width: 150px;
-                height: 150px;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-            .container {
-                padding: 30px 20px;
-            }
-            .hero-headline {
-                font-size: 2rem;
-            }
-            .circle-wrap {
-                float: none;
-                margin: 0 auto 20px;
-            }
-        }
-        
-        .section {
+        /* Simple list style */
+        .item-list {
+            list-style: none;
             margin-bottom: 30px;
         }
         
-        .section-header {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: #e8a87c;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e8a87c;
-            display: inline-block;
+        .item-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 1rem;
         }
         
-        .item {
-            margin-bottom: 16px;
-            font-size: 0.95rem;
-            color: #444;
+        .item-list li:last-child {
+            border-bottom: none;
         }
         
-        .item strong {
+        .item-list a {
             color: #1a1a1a;
-        }
-        
-        .item a {
-            color: #c4724c;
             text-decoration: none;
         }
         
-        .item a:hover {
+        .item-list a:hover {
             text-decoration: underline;
         }
         
-        /* Pull quote */
-        .pull-quote {
+        /* Quote - simple */
+        .quote {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-style: italic;
             color: #555;
-            border-left: 4px solid #e8a87c;
-            padding-left: 25px;
             margin: 40px 0;
-            grid-column: span 3;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
         }
         
-        .pull-quote cite {
+        .quote cite {
             display: block;
             font-size: 0.9rem;
             font-style: normal;
-            color: #888;
+            color: #999;
             margin-top: 10px;
         }
         
-        @media (max-width: 900px) {
-            .pull-quote {
-                grid-column: span 2;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .pull-quote {
-                grid-column: span 1;
-                font-size: 1.3rem;
-            }
-        }
-        
-        /* Feed links */
-        .feed-section {
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 25px 30px;
-            margin-bottom: 40px;
-        }
-        
+        /* Feed links - inline */
         .feed-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .feed-links a {
+            color: #666;
+            text-decoration: none;
+            margin-right: 20px;
             font-family: 'Inter', sans-serif;
             font-size: 0.9rem;
         }
         
-        .feed-links a {
-            color: #1a1a1a;
-            text-decoration: none;
-            padding: 8px 16px;
-            background: #f8f5f0;
-            border-radius: 20px;
-            transition: all 0.2s;
-        }
-        
         .feed-links a:hover {
-            background: #e8a87c;
-            color: #fff;
-        }
-        
-        /* Opportunities */
-        .opportunities {
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 30px;
-        }
-        
-        .opp-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
             color: #1a1a1a;
+        }
+        
+        /* Opportunities - clean list */
+        .opportunities {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .opportunities h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
             margin-bottom: 20px;
         }
         
         .opp-item {
-            padding: 18px 0;
-            border-bottom: 1px solid #eee;
+            margin-bottom: 15px;
         }
         
-        .opp-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-        
-        .opp-name {
-            font-weight: 600;
+        .opp-item a {
             color: #1a1a1a;
-            margin-bottom: 5px;
+            text-decoration: underline;
+            text-decoration-color: #ccc;
         }
         
-        .opp-details {
+        .opp-meta {
             font-family: 'Inter', sans-serif;
             font-size: 0.85rem;
-            color: #666;
-        }
-        
-        .opp-link {
-            color: #c4724c;
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-        }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            border-top: 1px solid #ddd;
-            margin-top: 60px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
             color: #888;
         }
         
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1a1a1a;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 8px;
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 50px;
+            border-top: 1px solid #eee;
             font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            display: none;
-            z-index: 1000;
+            font-size: 0.8rem;
+            color: #aaa;
         }
         
-        .toast.show {
-            display: block;
+        @media (max-width: 700px) {
+            .container {
+                padding: 30px 20px;
+            }
+            .main-headline {
+                font-size: 2rem;
+            }
+            .character {
+                float: none;
+                width: 120px;
+                height: 200px;
+                margin: 0 auto 20px;
+                display: block;
+                shape-outside: none;
+            }
+            .content {
+                text-align: left;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="sunburst"></div>
-    <div class="sunburst-2"></div>
-    
     <div class="container">
         <header>
             <h1 class="masthead">The Daily Digest</h1>
@@ -455,133 +286,98 @@
         </header>
         
         <div class="subscribe-bar">
-            <span class="subscribe-label">Get daily briefings delivered</span>
-            <div class="subscribe-form">
-                <input type="email" id="email" placeholder="Email" />
-                <input type="tel" id="whatsapp" placeholder="WhatsApp" />
-                <button class="subscribe-btn" onclick="subscribe()">Subscribe →</button>
-            </div>
-        </div>
-        
-        <div class="hero">
-            <div>
-                <h2 class="hero-headline">WHAT HAPPENED THIS WEEK IN TECH, CULTURE & THE FUTURE</h2>
-                <p class="hero-byline">Curated Insights · No Noise</p>
-            </div>
-            <div class="hero-content">
-                <p>SoftBank just secured forty billion dollars to double down on OpenAI—a bet that signals an IPO is coming. Anthropic's new model "Mythos" leaked, showing a step change in reasoning. Physical Intelligence is raising another billion at an eleven billion valuation. The machines that learn are learning faster.</p>
-            </div>
+            <input type="email" id="email" placeholder="Email" />
+            <input type="tel" id="whatsapp" placeholder="WhatsApp" />
+            <button onclick="subscribe()">Subscribe</button>
         </div>
         
         <div class="audio-section">
-            <h3>🎧 Listen to Today's Briefing</h3>
-            <audio controls>
+            <h3>🎧 Listen to today's briefing</h3>
+            <audio controls style="width: 100%; max-width: 400px;">
                 <source src="audio/2026-03-29.mp3" type="audio/mpeg">
             </audio>
         </div>
         
-        <div class="featured-section">
-            <div class="circle-wrap">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/>
-                </svg>
+        <h2 class="main-headline">What Happened This Week</h2>
+        
+        <div class="content-wrapper">
+            <div class="character">
+                <img src="https://media.tenor.com/YVdlfy18mEUAAAAi/chika-dance.gif" alt="dancing" />
             </div>
-            <p class="circle-text">
-                <strong>The AGI race has begun.</strong> Behind the scenes, there's a fierce scramble to secure every power contract still available. Every six months another zero is added to the boardroom plans. Hark, founded by Figure's Brett Adcock, raised $100 million to build custom AI chips and hardware—staying secretive because they're competing directly with Apple. Physical Intelligence, the robotics startup founded by ex-Google Brain researchers, is raising another billion at an eleven billion dollar valuation. They build robots that can learn new tasks in hours, not months. Bluesky launched Attie, an app that uses AI to build custom feeds on the atproto network. GRU, from YC's Winter 2026 batch, is building a lunar hotel targeting 2032—already with $500 million in letters of intent.
-            </p>
+            
+            <div class="content">
+                <p>
+                    <a href="https://techcrunch.com/2026/03/27/why-softbanks-new-40b-loan-points-to-a-2026-openai-ipo/">SoftBank just secured $40 billion</a> to double down on OpenAI—a bet that signals an IPO is coming this year. Behind the scenes, there's a fierce scramble to secure every power contract still available for AI compute.
+                </p>
+                <p>
+                    <a href="https://fortune.com/2026/03/26/anthropic-says-testing-mythos-powerful-new-ai-model-after-data-leak-reveals-its-existence-step-change-in-capabilities/">Anthropic's "Mythos" model leaked</a>—described as a "step change" in reasoning capabilities that could make Claude competitive with OpenAI's o3. Meanwhile, <a href="https://techcrunch.com/2026/03/27/physical-intelligence-is-reportedly-in-talks-to-raise-1-billion-again/">Physical Intelligence is raising another $1B</a> at an $11B valuation. The robotics startup, founded by ex-Google Brain researchers, builds robots that learn new tasks in hours, not months.
+                </p>
+                <p>
+                    Hark, founded by Figure's Brett Adcock, raised $100M to build custom AI chips and hardware—competing directly with Apple. GRU from YC's Winter 2026 batch is building a lunar hotel targeting 2032, already with $500M in letters of intent. Bluesky launched Attie, an app using AI to build custom feeds. The NSF launched "AI-Ready America" to make every American AI-literate. The White House dropped an AI policy blueprint: protect kids, cap data center costs, preempt state regulations.
+                </p>
+                
+                <div class="section-header">🎨 Design & Product</div>
+                <p>
+                    <a href="https://www.nngroup.com/articles/state-of-ux-2026/">NN Group declares UX is not UI anymore</a>—AI is mediating more interactions. Generative UI is trending: screens that build themselves based on context. Ethical personalization is emerging—products that adapt without being creepy.
+                </p>
+                
+                <div class="section-header">🌍 Remote & Nomad</div>
+                <p>
+                    <a href="https://www.greenbacktaxservices.com/blog/digital-nomad-visa-countries/">50+ countries now offer digital nomad visas</a>. New trend: employees negotiating "location freedom" directly into contracts. Forbes lists seven high-paying remote gigs funding the nomad lifestyle.
+                </p>
+                
+                <div class="section-header">💰 Crypto & Web3</div>
+                <p>
+                    <a href="https://www.bloomberg.com/news/newsletters/2026-03-26/crypto-vcs-are-abandoning-web3-for-the-dependability-of-stablecoins">Bloomberg reports VCs are abandoning Web3 for stablecoins</a>—financial plumbing is where the money flows. Tether announced its first-ever audit. SEC and CFTC released a joint token taxonomy—regulatory clarity at last.
+                </p>
+                
+                <div class="section-header">🧠 Psychology</div>
+                <p>
+                    The 2026 World Happiness Report dropped. Biggest finding: social media's negative impact on wellbeing is now statistically measurable. Six factors matter: social support, income, health, freedom, generosity, low corruption.
+                </p>
+            </div>
         </div>
         
         <div style="clear: both;"></div>
         
-        <div class="content-grid">
-            <div class="section">
-                <div class="section-header">🤖 AI & Tech</div>
-                <p class="item"><strong>SoftBank secures $40B loan</strong> for OpenAI — signals 2026 IPO coming.</p>
-                <p class="item"><strong>Anthropic's 'Mythos' leaked</strong> — step change in reasoning, competitive with o3.</p>
-                <p class="item"><strong>NSF launches AI-Ready America</strong> — federal funding for universal AI literacy.</p>
-                <p class="item"><strong>White House AI blueprint</strong> — protect kids, cap data center costs, preempt state chaos.</p>
-            </div>
-            
-            <div class="section">
-                <div class="section-header">🎨 Design & Product</div>
-                <p class="item"><strong>UX is not UI anymore</strong> — NN Group declares AI is mediating more interactions.</p>
-                <p class="item"><strong>Generative UI trending</strong> — screens that build themselves based on context.</p>
-                <p class="item"><strong>Ethical personalization</strong> emerging — products adapt without being creepy.</p>
-            </div>
-            
-            <div class="section">
-                <div class="section-header">🌍 Remote & Nomad</div>
-                <p class="item"><strong>50+ countries</strong> now offer digital nomad visas.</p>
-                <p class="item">New trend: <strong>"location freedom"</strong> negotiated into employment contracts.</p>
-                <p class="item">Forbes: 7 high-paying remote gigs funding the nomad lifestyle.</p>
-            </div>
-            
-            <blockquote class="pull-quote">
-                "The only real test of intelligence is if you get what you want out of life."
-                <cite>— Naval Ravikant</cite>
-            </blockquote>
-            
-            <div class="section">
-                <div class="section-header">💰 Crypto & Web3</div>
-                <p class="item"><strong>VCs abandoning Web3 for stablecoins</strong> — Bloomberg reports financial plumbing is the play.</p>
-                <p class="item"><strong>Tether's first audit</strong> announced — transparency arrives.</p>
-                <p class="item">SEC & CFTC joint <strong>token taxonomy</strong> — regulatory clarity at last.</p>
-            </div>
-            
-            <div class="section">
-                <div class="section-header">🧠 Psychology & Culture</div>
-                <p class="item"><strong>2026 World Happiness Report</strong> — social media's negative impact now measurable.</p>
-                <p class="item">Six factors: social support, income, health, freedom, generosity, low corruption.</p>
-            </div>
-        </div>
+        <blockquote class="quote">
+            "The only real test of intelligence is if you get what you want out of life."
+            <cite>— Naval Ravikant</cite>
+        </blockquote>
         
-        <div class="feed-section">
-            <div class="section-header" style="margin-bottom: 20px;">📚 From Your Feed</div>
-            <div class="feed-links">
-                <a href="https://x.com/naval" target="_blank">@naval on distribution</a>
-                <a href="https://x.com/patrickc" target="_blank">@patrickc on institutions</a>
-                <a href="https://x.com/nntaleb" target="_blank">@nntaleb on skin in the game</a>
-                <a href="https://x.com/karpathy" target="_blank">@karpathy on model selection</a>
-            </div>
+        <div class="section-header">📚 From Your Feed</div>
+        <div class="feed-links">
+            <a href="https://x.com/naval" target="_blank">@naval</a>
+            <a href="https://x.com/patrickc" target="_blank">@patrickc</a>
+            <a href="https://x.com/nntaleb" target="_blank">@nntaleb</a>
+            <a href="https://x.com/karpathy" target="_blank">@karpathy</a>
+            <a href="https://x.com/levelsio" target="_blank">@levelsio</a>
         </div>
         
         <div class="opportunities">
-            <h3 class="opp-title">🎯 Opportunities</h3>
+            <h3>🎯 Opportunities</h3>
             <div class="opp-item">
-                <div class="opp-name">Y Combinator Summer 2026</div>
-                <div class="opp-details">Batch: July – September 2026</div>
-                <a href="https://ycombinator.com/apply" class="opp-link" target="_blank">ycombinator.com/apply</a>
+                <a href="https://ycombinator.com/apply">Y Combinator Summer 2026</a>
+                <div class="opp-meta">July – September 2026</div>
             </div>
             <div class="opp-item">
-                <div class="opp-name">Stanford Venture Fellowship 2026</div>
-                <div class="opp-details">Applications open now · Fully funded, global</div>
-                <a href="https://brightscholarship.com" class="opp-link" target="_blank">Apply →</a>
+                <a href="https://brightscholarship.com/stanford-venture-fellowship-2026-in-usa">Stanford Venture Fellowship</a>
+                <div class="opp-meta">Applications open · Fully funded</div>
             </div>
             <div class="opp-item">
-                <div class="opp-name">gBETA Marshall Accelerator</div>
-                <div class="opp-details">Starts mid-May 2026 · Now recruiting</div>
-                <a href="https://wvnews.com" class="opp-link" target="_blank">Learn more →</a>
+                <a href="https://wvnews.com">gBETA Marshall Accelerator</a>
+                <div class="opp-meta">Starts mid-May 2026</div>
             </div>
         </div>
         
         <footer>
-            <p>Delivered daily at 9am Amsterdam time</p>
+            Delivered daily at 9am Amsterdam
         </footer>
     </div>
     
-    <div class="toast" id="toast"></div>
-    
     <script>
-        async function subscribe() {
-            const email = document.getElementById('email').value.trim();
-            const whatsapp = document.getElementById('whatsapp').value.trim();
-            if (!email && !whatsapp) {
-                alert('Please enter email or WhatsApp');
-                return;
-            }
-            document.getElementById('toast').textContent = "You're subscribed! 🎉";
-            document.getElementById('toast').className = 'toast show';
-            setTimeout(() => document.getElementById('toast').className = 'toast', 3000);
+        function subscribe() {
+            alert("You're subscribed! 🎉");
             document.getElementById('email').value = '';
             document.getElementById('whatsapp').value = '';
         }
