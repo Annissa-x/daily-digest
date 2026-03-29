@@ -149,10 +149,12 @@
         /* Anime character - floats on right */
         .character {
             float: right;
-            width: 180px;
-            height: 320px;
-            shape-outside: ellipse(90px 160px at 50% 50%);
-            margin: 0 0 20px 30px;
+            width: 160px;
+            height: 280px;
+            shape-outside: polygon(30% 0%, 100% 0%, 100% 100%, 30% 100%);
+            margin: 0 -10px 15px 20px;
+            position: relative;
+            z-index: 10;
         }
         
         .character img,
@@ -160,6 +162,7 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
         }
         
         /* Content flows around */
@@ -316,15 +319,15 @@
                 font-size: 2rem;
             }
             .character {
-                float: none;
-                width: 120px;
-                height: 200px;
-                margin: 0 auto 20px;
-                display: block;
-                shape-outside: none;
+                float: right;
+                width: 100px;
+                height: 180px;
+                margin: 5px -5px 10px 15px;
+                shape-outside: polygon(20% 0%, 100% 0%, 100% 100%, 20% 100%);
             }
             .content {
                 text-align: left;
+                font-size: 1.15rem;
             }
         }
     </style>
