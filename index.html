@@ -146,13 +146,14 @@
             position: relative;
         }
         
-        /* Anime character - floats on right */
+        /* Trump dancing - floats on right with dynamic text flow */
         .character {
             float: right;
-            width: 160px;
-            height: 280px;
-            shape-outside: polygon(30% 0%, 100% 0%, 100% 100%, 30% 100%);
-            margin: 0 -10px 15px 20px;
+            width: 180px;
+            height: 300px;
+            shape-outside: ellipse(50% 45% at 50% 50%);
+            shape-margin: 15px;
+            margin: 0 -10px 20px 25px;
             position: relative;
             z-index: 10;
         }
@@ -166,6 +167,7 @@
         
         .character video {
             mix-blend-mode: multiply;
+            filter: contrast(1.05) saturate(1.1);
         }
         
         /* Content flows around */
@@ -421,6 +423,41 @@
             }
         }
     </style>
+    <script type="module">
+        import { prepareWithSegments, layoutNextLine } from 'https://cdn.jsdelivr.net/npm/@chenglou/pretext@0.0.3/dist/layout.js';
+        
+        window.initPretextFlow = async function() {
+            const video = document.getElementById('dancing-video');
+            const content = document.getElementById('flowing-content');
+            const wrapper = document.getElementById('content-wrapper');
+            
+            if (!video || !content || !wrapper) return;
+            
+            // Store original HTML
+            const originalHTML = content.innerHTML;
+            
+            function updateTextFlow() {
+                const videoRect = video.getBoundingClientRect();
+                const wrapperRect = wrapper.getBoundingClientRect();
+                const videoRight = videoRect.right - wrapperRect.left;
+                const videoBottom = videoRect.bottom - wrapperRect.top;
+                
+                // Update CSS custom properties for dynamic shape
+                content.style.setProperty('--video-width', `${videoRect.width + 30}px`);
+                content.style.setProperty('--video-height', `${videoRect.height}px`);
+            }
+            
+            // Update on video timeupdate for animation sync
+            video.addEventListener('timeupdate', updateTextFlow);
+            video.addEventListener('loadedmetadata', updateTextFlow);
+            window.addEventListener('resize', updateTextFlow);
+            updateTextFlow();
+        };
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.initPretextFlow) window.initPretextFlow();
+        });
+    </script>
 </head>
 <body>
     <div class="flag-stripe"></div>
@@ -446,14 +483,14 @@
         
         <h2 class="main-headline">🇺🇸 TREMENDOUS NEWS THIS WEEK 🇺🇸</h2>
         
-        <div class="content-wrapper">
-            <div class="character">
-                <video autoplay loop muted playsinline>
+        <div class="content-wrapper" id="content-wrapper">
+            <div class="character" id="trump-video">
+                <video autoplay loop muted playsinline id="dancing-video">
                     <source src="assets/dancing.mp4" type="video/mp4">
                 </video>
             </div>
             
-            <div class="content">
+            <div class="content" id="flowing-content">
                 <p>
                     <a href="https://techcrunch.com/2026/03/27/why-softbanks-new-40b-loan-points-to-a-2026-openai-ipo/">SoftBank just secured $40 billion</a> to double down on OpenAI—a bet that signals an IPO is coming this year. Behind the scenes, there's a fierce scramble to secure every power contract still available for AI compute.
                 </p>
