@@ -66,14 +66,14 @@
         
         /* Header bar */
         .classified-bar {
-            background: var(--paper-dark);
-            color: #555;
+            background: var(--bg-dark);
+            color: var(--accent-green);
             font-family: 'Special Elite', monospace;
             text-align: center;
-            padding: 10px 20px;
-            font-size: 0.8rem;
-            letter-spacing: 0.25em;
-            border-bottom: 1px solid #bbb;
+            padding: 12px 20px;
+            font-size: 0.85rem;
+            letter-spacing: 0.3em;
+            border-bottom: 1px solid rgba(74, 222, 128, 0.2);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -502,20 +502,21 @@
         }
         
         .footer-bar {
-            background: var(--paper-dark);
-            color: #555;
+            background: var(--bg-dark);
+            color: var(--accent-green);
             text-align: center;
             padding: 20px;
             font-size: 0.75rem;
             letter-spacing: 0.15em;
-            border-top: 1px solid #bbb;
             max-width: 1000px;
             margin: 0 auto;
         }
     </style>
 </head>
 <body>
-    <!-- top bar removed -->
+    <div class="classified-bar">
+        MAJESTIC 12 // DOC RETRIEVAL // EYES ONLY
+    </div>
     
     <div class="container">
         <div class="document">
@@ -738,7 +739,9 @@
         </div>
     </div>
     
-    <!-- footer bar removed -->
+    <div class="footer-bar">
+        Delivered daily at 9am Amsterdam 🦅 Making Mornings Great Again
+    </div>
     
     <script>
         function subscribe() {
