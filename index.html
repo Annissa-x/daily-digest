@@ -366,9 +366,30 @@
             color: #1a8cd8;
         }
         
+        /* Pretext hero animation */
+        .pretext-hero {
+            width: 100%;
+            height: 180px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
+            border-radius: 12px;
+            border: 1px solid #eee;
+        }
+        
+        #pretext-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        
         @media (max-width: 700px) {
             .tweet-card.featured {
                 grid-column: span 1;
+            }
+            .pretext-hero {
+                height: 140px;
             }
         }
         
@@ -462,6 +483,11 @@
         </div>
         
         <h2 class="main-headline">🇺🇸 TREMENDOUS NEWS THIS WEEK 🇺🇸</h2>
+        
+        <!-- Pretext animated hero -->
+        <div class="pretext-hero" id="pretext-container">
+            <canvas id="pretext-canvas"></canvas>
+        </div>
         
         <div class="content-wrapper">
             <div class="content">
@@ -678,6 +704,120 @@
         
         // Apply bionic reading on load
         document.addEventListener('DOMContentLoaded', applyBionicReading);
+        
+        // Pretext-style animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('pretext-canvas');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            const dpr = window.devicePixelRatio || 1;
+            
+            function resize() {
+                const rect = canvas.getBoundingClientRect();
+                canvas.width = rect.width * dpr;
+                canvas.height = rect.height * dpr;
+                ctx.scale(dpr, dpr);
+            }
+            resize();
+            window.addEventListener('resize', resize);
+            
+            const text = "THE YUGE NEWS • TREMENDOUS UPDATES DAILY • AI • CRYPTO • BIOTECH • REMOTE WORK • MAKING MORNINGS GREAT AGAIN • ";
+            const words = [];
+            let starX = 0, starY = 0;
+            let targetX = 0, targetY = 0;
+            let time = 0;
+            
+            // Measure and create word objects
+            ctx.font = '18px "Source Serif 4", Georgia, serif';
+            let x = 0;
+            const lineHeight = 28;
+            const padding = 20;
+            
+            function initWords() {
+                words.length = 0;
+                const rect = canvas.getBoundingClientRect();
+                const width = rect.width - padding * 2;
+                let currentX = padding;
+                let currentY = 40;
+                
+                const allWords = (text + text + text).split(' ');
+                allWords.forEach(word => {
+                    const w = ctx.measureText(word + ' ').width;
+                    if (currentX + w > width + padding) {
+                        currentX = padding;
+                        currentY += lineHeight;
+                    }
+                    if (currentY < rect.height - 20) {
+                        words.push({
+                            text: word,
+                            baseX: currentX,
+                            baseY: currentY,
+                            x: currentX,
+                            y: currentY,
+                            width: w
+                        });
+                    }
+                    currentX += w;
+                });
+            }
+            initWords();
+            
+            // Animation loop
+            function animate() {
+                const rect = canvas.getBoundingClientRect();
+                ctx.clearRect(0, 0, rect.width, rect.height);
+                
+                time += 0.02;
+                
+                // Star follows a path
+                targetX = rect.width / 2 + Math.cos(time) * (rect.width / 3);
+                targetY = rect.height / 2 + Math.sin(time * 1.3) * 40;
+                starX += (targetX - starX) * 0.05;
+                starY += (targetY - starY) * 0.05;
+                
+                const starRadius = 50;
+                
+                // Update word positions
+                words.forEach(word => {
+                    const dx = word.baseX - starX;
+                    const dy = word.baseY - starY;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (dist < starRadius + 30) {
+                        // Push word away
+                        const angle = Math.atan2(dy, dx);
+                        const pushDist = (starRadius + 30 - dist);
+                        word.x = word.baseX + Math.cos(angle) * pushDist * 0.8;
+                        word.y = word.baseY + Math.sin(angle) * pushDist * 0.3;
+                    } else {
+                        // Lerp back to base position
+                        word.x += (word.baseX - word.x) * 0.1;
+                        word.y += (word.baseY - word.y) * 0.1;
+                    }
+                });
+                
+                // Draw words
+                ctx.font = '17px "Source Serif 4", Georgia, serif';
+                ctx.fillStyle = '#333';
+                words.forEach(word => {
+                    ctx.fillText(word.text, word.x, word.y);
+                });
+                
+                // Draw star/dragon
+                ctx.save();
+                ctx.translate(starX, starY);
+                ctx.rotate(time * 0.5);
+                ctx.font = '40px serif';
+                ctx.fillText('⭐', -20, 15);
+                ctx.restore();
+                
+                requestAnimationFrame(animate);
+            }
+            animate();
+            
+            window.addEventListener('resize', initWords);
+        });
     </script>
 </body>
 </html>
