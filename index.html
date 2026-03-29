@@ -705,13 +705,17 @@
         // Apply bionic reading on load
         document.addEventListener('DOMContentLoaded', applyBionicReading);
         
-        // Pretext-style animation
+        // Pretext-style animation with Trump silhouette
         document.addEventListener('DOMContentLoaded', function() {
             const canvas = document.getElementById('pretext-canvas');
             if (!canvas) return;
             
             const ctx = canvas.getContext('2d');
             const dpr = window.devicePixelRatio || 1;
+            
+            // Load Trump silhouette
+            const trumpImg = new Image();
+            trumpImg.src = 'assets/trump-silhouette.svg';
             
             function resize() {
                 const rect = canvas.getBoundingClientRect();
@@ -724,22 +728,21 @@
             
             const text = "THE YUGE NEWS • TREMENDOUS UPDATES DAILY • AI • CRYPTO • BIOTECH • REMOTE WORK • MAKING MORNINGS GREAT AGAIN • ";
             const words = [];
-            let starX = 0, starY = 0;
+            let trumpX = 0, trumpY = 0;
             let targetX = 0, targetY = 0;
             let time = 0;
             
-            // Measure and create word objects
-            ctx.font = '18px "Source Serif 4", Georgia, serif';
-            let x = 0;
             const lineHeight = 28;
             const padding = 20;
+            const trumpSize = 80;
             
             function initWords() {
                 words.length = 0;
                 const rect = canvas.getBoundingClientRect();
+                ctx.font = '17px "Source Serif 4", Georgia, serif';
                 const width = rect.width - padding * 2;
                 let currentX = padding;
-                let currentY = 40;
+                let currentY = 35;
                 
                 const allWords = (text + text + text).split(' ');
                 allWords.forEach(word => {
@@ -748,7 +751,7 @@
                         currentX = padding;
                         currentY += lineHeight;
                     }
-                    if (currentY < rect.height - 20) {
+                    if (currentY < rect.height - 10) {
                         words.push({
                             text: word,
                             baseX: currentX,
@@ -768,53 +771,57 @@
                 const rect = canvas.getBoundingClientRect();
                 ctx.clearRect(0, 0, rect.width, rect.height);
                 
-                time += 0.02;
+                time += 0.015;
                 
-                // Star follows a path
-                targetX = rect.width / 2 + Math.cos(time) * (rect.width / 3);
-                targetY = rect.height / 2 + Math.sin(time * 1.3) * 40;
-                starX += (targetX - starX) * 0.05;
-                starY += (targetY - starY) * 0.05;
+                // Trump floats smoothly across
+                targetX = rect.width / 2 + Math.cos(time) * (rect.width / 3 - 50);
+                targetY = rect.height / 2 + Math.sin(time * 0.8) * 30;
+                trumpX += (targetX - trumpX) * 0.03;
+                trumpY += (targetY - trumpY) * 0.03;
                 
-                const starRadius = 50;
+                const collisionRadius = trumpSize / 2 + 15;
                 
-                // Update word positions
+                // Update word positions - push away from Trump
                 words.forEach(word => {
-                    const dx = word.baseX - starX;
-                    const dy = word.baseY - starY;
+                    const centerX = trumpX;
+                    const centerY = trumpY;
+                    const dx = (word.baseX + word.width/2) - centerX;
+                    const dy = word.baseY - centerY;
                     const dist = Math.sqrt(dx * dx + dy * dy);
                     
-                    if (dist < starRadius + 30) {
-                        // Push word away
+                    if (dist < collisionRadius + 20) {
                         const angle = Math.atan2(dy, dx);
-                        const pushDist = (starRadius + 30 - dist);
-                        word.x = word.baseX + Math.cos(angle) * pushDist * 0.8;
-                        word.y = word.baseY + Math.sin(angle) * pushDist * 0.3;
+                        const pushDist = (collisionRadius + 20 - dist);
+                        word.x = word.baseX + Math.cos(angle) * pushDist * 1.2;
+                        word.y = word.baseY + Math.sin(angle) * pushDist * 0.4;
                     } else {
-                        // Lerp back to base position
-                        word.x += (word.baseX - word.x) * 0.1;
-                        word.y += (word.baseY - word.y) * 0.1;
+                        word.x += (word.baseX - word.x) * 0.08;
+                        word.y += (word.baseY - word.y) * 0.08;
                     }
                 });
                 
-                // Draw words
+                // Draw words with pixelated effect
                 ctx.font = '17px "Source Serif 4", Georgia, serif';
-                ctx.fillStyle = '#333';
+                ctx.fillStyle = '#444';
                 words.forEach(word => {
                     ctx.fillText(word.text, word.x, word.y);
                 });
                 
-                // Draw star/dragon
-                ctx.save();
-                ctx.translate(starX, starY);
-                ctx.rotate(time * 0.5);
-                ctx.font = '40px serif';
-                ctx.fillText('⭐', -20, 15);
-                ctx.restore();
+                // Draw Trump silhouette
+                if (trumpImg.complete) {
+                    ctx.save();
+                    ctx.globalAlpha = 0.85;
+                    // Pixelate effect
+                    ctx.imageSmoothingEnabled = false;
+                    ctx.drawImage(trumpImg, trumpX - trumpSize/2, trumpY - trumpSize/2, trumpSize, trumpSize * 1.2);
+                    ctx.restore();
+                }
                 
                 requestAnimationFrame(animate);
             }
-            animate();
+            
+            trumpImg.onload = animate;
+            if (trumpImg.complete) animate();
             
             window.addEventListener('resize', initWords);
         });
