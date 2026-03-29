@@ -91,33 +91,33 @@
             position: relative;
             max-width: 1000px;
             margin: 0 auto;
-            padding: 15px 15px 25px 15px;
+            padding: 20px;
+            padding-bottom: 30px;
         }
         
         /* Background papers for depth */
-        .document-stack::before,
-        .document-stack::after {
-            content: '';
+        .paper-layer {
             position: absolute;
-            background: #d5d0c3;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+            background: #d8d4c8;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.2);
         }
         
-        .document-stack::before {
-            top: 10px;
-            bottom: -10px;
-            left: 8px;
-            right: 8px;
-            z-index: -2;
-            transform: rotate(-0.4deg);
-            background: #ccc7b8;
+        .paper-layer-1 {
+            top: 25px;
+            bottom: 5px;
+            left: 25px;
+            right: 15px;
+            transform: rotate(-0.5deg);
+            background: #c8c4b8;
         }
         
-        .document-stack::after {
-            top: 5px;
-            z-index: -1;
-            transform: rotate(0.25deg);
-            background: #d5d0c3;
+        .paper-layer-2 {
+            top: 22px;
+            bottom: 10px;
+            left: 22px;
+            right: 12px;
+            transform: rotate(0.3deg);
+            background: #d0ccc0;
         }
         
         .document {
@@ -130,7 +130,7 @@
                 0 2px 15px rgba(0,0,0,0.25),
                 inset 0 0 100px rgba(0,0,0,0.08);
             position: relative;
-            z-index: 1;
+            z-index: 2;
             padding: 50px 80px;
             min-height: 100vh;
         }
@@ -553,6 +553,8 @@
     
     <div class="container">
         <div class="document-stack">
+        <div class="paper-layer paper-layer-1"></div>
+        <div class="paper-layer paper-layer-2"></div>
         <div class="document">
             <!-- Stamps -->
             <div class="stamp stamp-top-secret">TOP SECRET</div>
