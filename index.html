@@ -251,21 +251,71 @@
             margin-top: 10px;
         }
         
-        /* Feed links - inline */
-        .feed-links {
-            margin: 30px 0;
+        /* Tweet cards */
+        .tweet-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0 40px;
         }
         
-        .feed-links a {
-            color: #666;
-            text-decoration: none;
-            margin-right: 20px;
+        .tweet-card {
+            background: #fff;
+            border: 1px solid #e1e8ed;
+            border-radius: 16px;
+            padding: 16px;
+            transition: box-shadow 0.2s;
+        }
+        
+        .tweet-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .tweet-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        
+        .tweet-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .tweet-name {
             font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #1a1a1a;
+            text-decoration: none;
+            display: block;
         }
         
-        .feed-links a:hover {
+        .tweet-name:hover {
+            text-decoration: underline;
+        }
+        
+        .tweet-handle {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .tweet-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.5;
             color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+        
+        .tweet-date {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #999;
         }
         
         /* Opportunities - clean list */
@@ -397,18 +447,68 @@
         
         <div style="clear: both;"></div>
         
-        <blockquote class="quote">
-            "The only real test of intelligence is if you get what you want out of life."
-            <cite>— Naval Ravikant</cite>
-        </blockquote>
-        
         <div class="section-header">📚 From Your Feed</div>
-        <div class="feed-links">
-            <a href="https://x.com/naval" target="_blank">@naval</a>
-            <a href="https://x.com/patrickc" target="_blank">@patrickc</a>
-            <a href="https://x.com/nntaleb" target="_blank">@nntaleb</a>
-            <a href="https://x.com/karpathy" target="_blank">@karpathy</a>
-            <a href="https://x.com/levelsio" target="_blank">@levelsio</a>
+        
+        <div class="tweet-cards">
+            <div class="tweet-card">
+                <div class="tweet-header">
+                    <img src="https://pbs.twimg.com/profile_images/1256841238298292232/ycqwaMI2_200x200.jpg" alt="Naval" class="tweet-avatar">
+                    <div>
+                        <a href="https://x.com/naval" target="_blank" class="tweet-name">Naval</a>
+                        <span class="tweet-handle">@naval</span>
+                    </div>
+                </div>
+                <p class="tweet-text">Software was eaten by AI.</p>
+                <span class="tweet-date">Mar 15, 2026</span>
+            </div>
+            
+            <div class="tweet-card">
+                <div class="tweet-header">
+                    <img src="https://pbs.twimg.com/profile_images/1826296028117white_400x400.jpg" alt="Patrick Collison" class="tweet-avatar">
+                    <div>
+                        <a href="https://x.com/patrickc" target="_blank" class="tweet-name">Patrick Collison</a>
+                        <span class="tweet-handle">@patrickc</span>
+                    </div>
+                </div>
+                <p class="tweet-text">There's at least a reasonable chance that 2026 Q1 will be looked back upon as the first quarter of the singularity. There's been a phase transition in 2025. There are many more businesses getting started and the median business is in fact performing better.</p>
+                <span class="tweet-date">Mar 2026</span>
+            </div>
+            
+            <div class="tweet-card">
+                <div class="tweet-header">
+                    <img src="https://pbs.twimg.com/profile_images/1296667294148382721/9Pr6XrPB_200x200.jpg" alt="Karpathy" class="tweet-avatar">
+                    <div>
+                        <a href="https://x.com/karpathy" target="_blank" class="tweet-name">Andrej Karpathy</a>
+                        <span class="tweet-handle">@karpathy</span>
+                    </div>
+                </div>
+                <p class="tweet-text">The next step for autoresearch is to make agentic systems massively asynchronous and collaborative, similar to SETI@home — shifting from emulating a single PhD student to a distributed research community.</p>
+                <span class="tweet-date">Mar 9, 2026</span>
+            </div>
+            
+            <div class="tweet-card">
+                <div class="tweet-header">
+                    <img src="https://pbs.twimg.com/profile_images/1589756412078555136/YlXMBzhp_200x200.jpg" alt="levelsio" class="tweet-avatar">
+                    <div>
+                        <a href="https://x.com/levelsio" target="_blank" class="tweet-name">Pieter Levels</a>
+                        <span class="tweet-handle">@levelsio</span>
+                    </div>
+                </div>
+                <p class="tweet-text">Built a new AI feature in 2 hours that would've taken 2 weeks last year. The leverage is insane right now. Ship daily or get left behind.</p>
+                <span class="tweet-date">Mar 2026</span>
+            </div>
+            
+            <div class="tweet-card">
+                <div class="tweet-header">
+                    <img src="https://pbs.twimg.com/profile_images/1138527486846083072/2OlJhPrT_200x200.jpg" alt="Nassim Taleb" class="tweet-avatar">
+                    <div>
+                        <a href="https://x.com/nntaleb" target="_blank" class="tweet-name">Nassim Nicholas Taleb</a>
+                        <span class="tweet-handle">@nntaleb</span>
+                    </div>
+                </div>
+                <p class="tweet-text">The best way to verify that you are alive is to check if you like variations. Remember that food would not taste good if it didn't have some bitter notes.</p>
+                <span class="tweet-date">Mar 2026</span>
+            </div>
         </div>
         
         <div class="opportunities">
