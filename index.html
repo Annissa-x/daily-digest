@@ -433,9 +433,8 @@
         </header>
         
         <div class="subscribe-bar">
-            <input type="email" id="email" placeholder="Email" />
-            <input type="tel" id="whatsapp" placeholder="WhatsApp" />
-            <button onclick="subscribe()">Subscribe</button>
+            <input type="tel" id="whatsapp" placeholder="+1 234 567 8900" />
+            <button onclick="subscribe()">Subscribe via WhatsApp</button>
         </div>
         
         <div class="audio-section">
@@ -594,9 +593,16 @@
     
     <script>
         function subscribe() {
-            alert("You're subscribed! 🎉");
-            document.getElementById('email').value = '';
+            const phone = document.getElementById('whatsapp').value.replace(/[^0-9+]/g, '');
+            if (!phone || phone.length < 8) {
+                alert("Please enter a valid WhatsApp number with country code");
+                return;
+            }
+            // Open WhatsApp with pre-filled subscribe message
+            const msg = encodeURIComponent("Subscribe me to The Daily Digest! 🗞️");
+            window.open(`https://wa.me/85298651552?text=${msg}`, '_blank');
             document.getElementById('whatsapp').value = '';
+            alert("Opening WhatsApp — just hit send to subscribe! 🎉");
         }
         
         // Bionic Reading - bold first part of each word
