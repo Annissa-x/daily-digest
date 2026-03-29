@@ -64,16 +64,15 @@
             z-index: 999;
         }
         
-        /* Header bar */
+        /* Header bar - muted paper color text */
         .classified-bar {
             background: var(--bg-dark);
-            color: var(--accent-green);
+            color: #8a857a;
             font-family: 'Special Elite', monospace;
             text-align: center;
             padding: 12px 20px;
             font-size: 0.85rem;
             letter-spacing: 0.3em;
-            border-bottom: 1px solid rgba(74, 222, 128, 0.2);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -87,19 +86,55 @@
             padding: 0;
         }
         
-        /* The Document */
+        /* The Document with stacked paper effect */
+        .document-stack {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-bottom: 20px;
+        }
+        
+        /* Background papers for depth */
+        .document-stack::before,
+        .document-stack::after {
+            content: '';
+            position: absolute;
+            background: var(--paper-dark);
+            border-radius: 2px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .document-stack::before {
+            bottom: 8px;
+            left: 12px;
+            right: 12px;
+            height: 100%;
+            z-index: -2;
+            transform: rotate(-0.3deg);
+        }
+        
+        .document-stack::after {
+            bottom: 3px;
+            left: 6px;
+            right: 6px;
+            height: 100%;
+            z-index: -1;
+            transform: rotate(0.2deg);
+            background: #ddd8cc;
+        }
+        
         .document {
             background: var(--paper);
             background-image: 
                 url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
             background-blend-mode: soft-light;
             border-radius: 0;
-            box-shadow: inset 0 0 100px rgba(0,0,0,0.08);
+            box-shadow: 
+                0 4px 20px rgba(0,0,0,0.3),
+                inset 0 0 100px rgba(0,0,0,0.08);
             position: relative;
             padding: 50px 80px;
             min-height: 100vh;
-            max-width: 1000px;
-            margin: 0 auto;
         }
         
         @media (max-width: 700px) {
@@ -519,6 +554,7 @@
     </div>
     
     <div class="container">
+        <div class="document-stack">
         <div class="document">
             <!-- Stamps -->
             <div class="stamp stamp-top-secret">TOP SECRET</div>
@@ -736,6 +772,7 @@
                 <a href="archive/" style="color: #888; text-decoration: none;">📚 Archive</a> · 
                 Delivered daily at 9am Amsterdam 🦅 Making Mornings Great Again
             </div>
+        </div>
         </div>
     </div>
     
