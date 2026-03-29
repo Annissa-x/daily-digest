@@ -318,6 +318,43 @@
             color: #999;
         }
         
+        .tweet-card.featured {
+            grid-column: span 2;
+            background: linear-gradient(135deg, #fafafa 0%, #f0f4ff 100%);
+            border-color: #c5d4ff;
+        }
+        
+        .tweet-gallery {
+            margin: 12px 0;
+        }
+        
+        .gallery-preview {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid #e1e8ed;
+        }
+        
+        .tweet-note {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #e1e8ed;
+        }
+        
+        .tweet-note a {
+            color: #1a8cd8;
+        }
+        
+        @media (max-width: 700px) {
+            .tweet-card.featured {
+                grid-column: span 1;
+            }
+        }
+        
         /* Opportunities - clean list */
         .opportunities {
             margin-top: 50px;
@@ -508,6 +545,24 @@
                 </div>
                 <p class="tweet-text">The best way to verify that you are alive is to check if you like variations. Remember that food would not taste good if it didn't have some bitter notes.</p>
                 <span class="tweet-date">Mar 2026</span>
+            </div>
+            
+            <div class="tweet-card featured">
+                <div class="tweet-header">
+                    <img src="https://pbs.twimg.com/profile_images/1539806012897562624/NjKdfvtR_200x200.jpg" alt="Cheng Lou" class="tweet-avatar">
+                    <div>
+                        <a href="https://x.com/_chenglou" target="_blank" class="tweet-name">Cheng Lou</a>
+                        <span class="tweet-handle">@_chenglou</span>
+                    </div>
+                </div>
+                <p class="tweet-text">Little bit of context on Midjourney's swirl! @makeshifted did the algorithm for the ascii swirl. The shipped version ended up being SVG — SVG filters had perf problems.</p>
+                <span class="tweet-date">Feb 4, 2025</span>
+                <div class="tweet-gallery">
+                    <a href="https://chenglou.me" target="_blank">
+                        <img src="https://chenglou.me/og.png" alt="Cheng Lou's Midjourney Gallery" class="gallery-preview">
+                    </a>
+                </div>
+                <p class="tweet-note">🎨 Check out his <a href="https://chenglou.me" target="_blank">Midjourney gallery</a> — "some of the most delicious UI/UX"</p>
             </div>
         </div>
         
