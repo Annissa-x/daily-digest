@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Daily Digest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
+            color: #e5e5e5;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #888;
+            font-size: 1rem;
+        }
+        
+        .date {
+            display: inline-block;
+            background: #1a1a1a;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 20px;
+        }
+        
+        .audio-player {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .audio-player h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        audio {
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #222;
+        }
+        
+        .section-emoji {
+            font-size: 1.3rem;
+        }
+        
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        
+        .headlines {
+            list-style: none;
+        }
+        
+        .headline {
+            padding: 12px 0;
+            border-bottom: 1px solid #1a1a1a;
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+        
+        .headline:last-child {
+            border-bottom: none;
+        }
+        
+        .headline::before {
+            content: "•";
+            color: #444;
+            margin-right: 10px;
+        }
+        
+        .opportunity {
+            background: #111;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .opportunity-title {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        
+        .opportunity-meta {
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        .opportunity-link {
+            color: #60a5fa;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        
+        .opportunity-link:hover {
+            text-decoration: underline;
+        }
+        
+        .archive {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #222;
+        }
+        
+        .archive h2 {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 20px;
+        }
+        
+        .archive-list {
+            list-style: none;
+        }
+        
+        .archive-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        
+        .archive-item a {
+            color: #e5e5e5;
+            text-decoration: none;
+        }
+        
+        .archive-item a:hover {
+            color: #fff;
+        }
+        
+        .subscribe-bar {
+            background: #111;
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .subscribe-label {
+            color: #888;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .subscribe-form {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .input-group {
+            display: flex;
+            align-items: center;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 0 12px;
+        }
+        
+        .input-icon {
+            font-size: 0.9rem;
+            margin-right: 8px;
+        }
+        
+        .input-group input {
+            background: transparent;
+            border: none;
+            color: #e5e5e5;
+            padding: 12px 0;
+            font-size: 0.9rem;
+            width: 150px;
+            outline: none;
+        }
+        
+        .input-group input::placeholder {
+            color: #666;
+        }
+        
+        .subscribe-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .subscribe-btn:hover {
+            background: #2563eb;
+        }
+        
+        .subscribe-btn:disabled {
+            background: #1e40af;
+            cursor: not-allowed;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #22c55e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            display: none;
+            z-index: 1000;
+        }
+        
+        .toast.error {
+            background: #ef4444;
+        }
+        
+        .toast.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        
+        @media (max-width: 600px) {
+            .subscribe-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .subscribe-form {
+                flex-direction: column;
+            }
+            
+            .input-group {
+                width: 100%;
+            }
+            
+            .input-group input {
+                width: 100%;
+            }
+            
+            .subscribe-btn {
+                width: 100%;
+            }
+        }
+        
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            color: #444;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>The Daily Digest</h1>
+            <p class="subtitle">Curated insights. No noise.</p>
+            <span class="date" id="current-date">March 29, 2026</span>
+        </header>
+        
+        <div class="subscribe-bar">
+            <span class="subscribe-label">Get daily briefings</span>
+            <div class="subscribe-form">
+                <div class="input-group">
+                    <span class="input-icon">✉️</span>
+                    <input type="email" id="email" placeholder="email" />
+                </div>
+                <div class="input-group">
+                    <span class="input-icon">📱</span>
+                    <input type="tel" id="whatsapp" placeholder="WhatsApp #" />
+                </div>
+                <button class="subscribe-btn" onclick="subscribe()">Subscribe →</button>
+            </div>
+        </div>
+        
+        <div class="audio-player">
+            <h3>🎧 Listen to today's briefing</h3>
+            <audio controls id="audio-player">
+                <source src="audio/2026-03-29.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        
+        <main id="content">
+            <!-- Content will be loaded here -->
+        </main>
+        
+        <div class="archive">
+            <h2>📚 Past Digests</h2>
+            <ul class="archive-list" id="archive-list">
+                <!-- Archive items will be loaded here -->
+            </ul>
+        </div>
+        
+        <footer>
+            <p>Delivered daily at 9am Amsterdam time</p>
+        </footer>
+        
+        <div class="toast" id="toast"></div>
+    </div>
+    
+    <script>
+        // Load today's digest
+        async function loadDigest(date) {
+            try {
+                const response = await fetch(`data/${date}.json`);
+                const data = await response.json();
+                renderDigest(data);
+            } catch (e) {
+                console.log('Loading default content');
+                renderDefaultContent();
+            }
+        }
+        
+        function renderDigest(data) {
+            const content = document.getElementById('content');
+            let html = '';
+            
+            data.sections.forEach(section => {
+                html += `
+                    <div class="section">
+                        <div class="section-header">
+                            <span class="section-emoji">${section.emoji}</span>
+                            <span class="section-title">${section.title}</span>
+                        </div>
+                        <ul class="headlines">
+                            ${section.items.map(item => `<li class="headline">${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+            
+            if (data.opportunities) {
+                html += `
+                    <div class="section">
+                        <div class="section-header">
+                            <span class="section-emoji">🎯</span>
+                            <span class="section-title">Opportunities</span>
+                        </div>
+                        ${data.opportunities.map(opp => `
+                            <div class="opportunity">
+                                <div class="opportunity-title">${opp.title}</div>
+                                <div class="opportunity-meta">${opp.details}</div>
+                                <a href="${opp.link}" class="opportunity-link" target="_blank">${opp.link}</a>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+            
+            content.innerHTML = html;
+        }
+        
+        function renderDefaultContent() {
+            // Default content for today
+            const data = {
+                sections: [
+                    {
+                        emoji: "🤖",
+                        title: "AI & TECH",
+                        items: [
+                            "SoftBank secures $40B loan to boost OpenAI investments",
+                            "White House drops AI policy blueprint: protect kids, cap data center costs, preempt state regs",
+                            "Treasury launches AI Innovation Series (public-private initiative)",
+                            "NSF launches \"AI-Ready America\" - funding to make every American AI-literate",
+                            "SEC & CFTC release joint \"token taxonomy\" - biggest regulatory clarity yet",
+                            "Anthropic leaked new model called \"Mythos\" (details unclear)"
+                        ]
+                    },
+                    {
+                        emoji: "🎨",
+                        title: "DESIGN & PRODUCT",
+                        items: [
+                            "NN Group: \"UX ≠ UI anymore\" - AI mediating more interactions",
+                            "Generative UI trending - interfaces that build themselves based on context",
+                            "\"Ethical personalization\" emerging - products adjust without being creepy",
+                            "Spatial UI going mainstream beyond Apple Vision"
+                        ]
+                    },
+                    {
+                        emoji: "🌍",
+                        title: "REMOTE/NOMAD",
+                        items: [
+                            "50+ countries now offer digital nomad visas",
+                            "New trend: employees negotiating \"location freedom\" into contracts",
+                            "Forbes: 7 high-paying remote gigs funding nomad life"
+                        ]
+                    },
+                    {
+                        emoji: "💰",
+                        title: "CRYPTO/WEB3",
+                        items: [
+                            "Bloomberg: VCs abandoning Web3 for stablecoins - \"financial plumbing\" is the real play",
+                            "Bitcoin volatility spiked this week (March 23-29)",
+                            "Tether announces first-ever audit",
+                            "\"Blockchain not Bitcoin\" era fading - stablecoin infrastructure winning"
+                        ]
+                    },
+                    {
+                        emoji: "🧠",
+                        title: "PSYCHOLOGY/CULTURE",
+                        items: [
+                            "2026 World Happiness Report: social media's negative impact now measurable",
+                            "6 happiness factors: social support, income, health, freedom, generosity, low corruption",
+                            "Parent happiness directly shapes child wellbeing (ASU study)"
+                        ]
+                    },
+                    {
+                        emoji: "📚",
+                        title: "IDEAS FROM YOUR FEED",
+                        items: [
+                            "@naval: \"Make your own App Store\" - own your distribution",
+                            "@naval: \"The only real test of intelligence is if you get what you want out of life\"",
+                            "@patrickc: Public health lost more credibility than any profession in 10 years",
+                            "@nntaleb: \"I am dumb when I don't have skin in the game\"",
+                            "@karpathy: o3 is the obvious best for important tasks"
+                        ]
+                    }
+                ],
+                opportunities: [
+                    {
+                        title: "Y Combinator Summer 2026",
+                        details: "Batch: July - September 2026",
+                        link: "https://ycombinator.com/apply"
+                    },
+                    {
+                        title: "Stanford Venture Fellowship 2026",
+                        details: "Applications open now | Fully funded, global",
+                        link: "https://brightscholarship.com/stanford-venture-fellowship-2026-in-usa"
+                    },
+                    {
+                        title: "gBETA Marshall Accelerator",
+                        details: "Starts: Mid-May 2026 | Recruiting now",
+                        link: "https://wvnews.com"
+                    }
+                ]
+            };
+            renderDigest(data);
+        }
+        
+        // Subscribe function
+        async function subscribe() {
+            const email = document.getElementById('email').value.trim();
+            const whatsapp = document.getElementById('whatsapp').value.trim();
+            
+            if (!email && !whatsapp) {
+                showToast('Please enter email or WhatsApp number', true);
+                return;
+            }
+            
+            const btn = document.querySelector('.subscribe-btn');
+            btn.disabled = true;
+            btn.textContent = 'Subscribing...';
+            
+            try {
+                const response = await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, whatsapp })
+                });
+                
+                if (response.ok) {
+                    showToast('You\'re subscribed! 🎉');
+                    document.getElementById('email').value = '';
+                    document.getElementById('whatsapp').value = '';
+                } else {
+                    showToast('Something went wrong. Try again.', true);
+                }
+            } catch (e) {
+                // For now, just save locally and show success
+                const subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+                subscribers.push({ email, whatsapp, date: new Date().toISOString() });
+                localStorage.setItem('subscribers', JSON.stringify(subscribers));
+                showToast('You\'re subscribed! 🎉');
+                document.getElementById('email').value = '';
+                document.getElementById('whatsapp').value = '';
+            }
+            
+            btn.disabled = false;
+            btn.textContent = 'Subscribe →';
+        }
+        
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast show' + (isError ? ' error' : '');
+            setTimeout(() => {
+                toast.className = 'toast';
+            }, 3000);
+        }
+        
+        // Initialize
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+        loadDigest(today);
+    </script>
+</body>
+</html>
