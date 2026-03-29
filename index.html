@@ -631,7 +631,7 @@
         }
         
         function applyBionicReading() {
-            document.querySelectorAll('.content p, .quote, .opp-item, .item-list li').forEach(el => {
+            document.querySelectorAll('.content p, .news-list li, .quote, .opp-item, .item-list li').forEach(el => {
                 el.classList.add('bionic');
                 // Process text nodes only (preserve links and other elements)
                 const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
