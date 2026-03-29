@@ -91,7 +91,7 @@
             position: relative;
             max-width: 1000px;
             margin: 0 auto;
-            padding-bottom: 20px;
+            padding: 15px 15px 25px 15px;
         }
         
         /* Background papers for depth */
@@ -99,28 +99,25 @@
         .document-stack::after {
             content: '';
             position: absolute;
-            background: var(--paper-dark);
-            border-radius: 2px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            background: #d5d0c3;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.15);
         }
         
         .document-stack::before {
-            bottom: 8px;
-            left: 12px;
-            right: 12px;
-            height: 100%;
+            top: 10px;
+            bottom: -10px;
+            left: 8px;
+            right: 8px;
             z-index: -2;
-            transform: rotate(-0.3deg);
+            transform: rotate(-0.4deg);
+            background: #ccc7b8;
         }
         
         .document-stack::after {
-            bottom: 3px;
-            left: 6px;
-            right: 6px;
-            height: 100%;
+            top: 5px;
             z-index: -1;
-            transform: rotate(0.2deg);
-            background: #ddd8cc;
+            transform: rotate(0.25deg);
+            background: #d5d0c3;
         }
         
         .document {
@@ -130,9 +127,10 @@
             background-blend-mode: soft-light;
             border-radius: 0;
             box-shadow: 
-                0 4px 20px rgba(0,0,0,0.3),
+                0 2px 15px rgba(0,0,0,0.25),
                 inset 0 0 100px rgba(0,0,0,0.08);
             position: relative;
+            z-index: 1;
             padding: 50px 80px;
             min-height: 100vh;
         }
