@@ -19,6 +19,45 @@
             color: #1a1a1a;
             line-height: 1.75;
             min-height: 100vh;
+            position: relative;
+        }
+        
+        /* American flag vibes */
+        .flag-stripe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, 
+                #bf0a30 0%, #bf0a30 33%, 
+                #ffffff 33%, #ffffff 66%, 
+                #002868 66%, #002868 100%);
+            z-index: 100;
+        }
+        
+        .eagle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 3rem;
+            opacity: 0.15;
+            z-index: 0;
+            animation: soar 3s ease-in-out infinite;
+        }
+        
+        @keyframes soar {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+        
+        .stars {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            font-size: 1.5rem;
+            opacity: 0.1;
+            z-index: 0;
         }
         
         .container {
@@ -279,6 +318,9 @@
     </style>
 </head>
 <body>
+    <div class="flag-stripe"></div>
+    <div class="eagle">🦅</div>
+    <div class="stars">⭐⭐⭐</div>
     <div class="container">
         <header>
             <h1 class="masthead">The Daily Digest</h1>
@@ -298,7 +340,7 @@
             </audio>
         </div>
         
-        <h2 class="main-headline">What Happened This Week</h2>
+        <h2 class="main-headline">🇺🇸 TREMENDOUS NEWS THIS WEEK 🇺🇸</h2>
         
         <div class="content-wrapper">
             <div class="character">
@@ -371,7 +413,7 @@
         </div>
         
         <footer>
-            Delivered daily at 9am Amsterdam
+            Delivered daily at 9am Amsterdam 🦅 Making Mornings Great Again
         </footer>
     </div>
     
