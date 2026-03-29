@@ -366,30 +366,9 @@
             color: #1a8cd8;
         }
         
-        /* Pretext hero animation */
-        .pretext-hero {
-            width: 100%;
-            height: 180px;
-            margin-bottom: 30px;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
-            border-radius: 12px;
-            border: 1px solid #eee;
-        }
-        
-        #pretext-canvas {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-        
         @media (max-width: 700px) {
             .tweet-card.featured {
                 grid-column: span 1;
-            }
-            .pretext-hero {
-                height: 140px;
             }
         }
         
@@ -483,11 +462,6 @@
         </div>
         
         <h2 class="main-headline">🇺🇸 TREMENDOUS NEWS THIS WEEK 🇺🇸</h2>
-        
-        <!-- Pretext animated hero -->
-        <div class="pretext-hero" id="pretext-container">
-            <canvas id="pretext-canvas"></canvas>
-        </div>
         
         <div class="content-wrapper">
             <div class="content">
@@ -704,180 +678,6 @@
         
         // Apply bionic reading on load
         document.addEventListener('DOMContentLoaded', applyBionicReading);
-        
-        // Bad Apple style pretext animation with Trump video silhouette
-        document.addEventListener('DOMContentLoaded', function() {
-            const canvas = document.getElementById('pretext-canvas');
-            if (!canvas) return;
-            
-            const ctx = canvas.getContext('2d');
-            const dpr = window.devicePixelRatio || 1;
-            
-            // Hidden video for silhouette extraction
-            const video = document.createElement('video');
-            video.src = 'assets/dancing.mp4';
-            video.loop = true;
-            video.muted = true;
-            video.playsInline = true;
-            
-            // Offscreen canvas for video processing
-            const offscreen = document.createElement('canvas');
-            const offCtx = offscreen.getContext('2d');
-            
-            let silhouetteData = null;
-            const silhouetteScale = 0.15; // Scale down for performance
-            
-            function resize() {
-                const rect = canvas.getBoundingClientRect();
-                canvas.width = rect.width * dpr;
-                canvas.height = rect.height * dpr;
-                ctx.scale(dpr, dpr);
-                initWords();
-            }
-            resize();
-            window.addEventListener('resize', resize);
-            
-            const text = "THE YUGE NEWS • TREMENDOUS UPDATES • AI & TECH • CRYPTO • BIOTECH • REMOTE WORK • MAKING MORNINGS GREAT AGAIN • ";
-            const words = [];
-            const lineHeight = 26;
-            const padding = 15;
-            
-            function initWords() {
-                words.length = 0;
-                const rect = canvas.getBoundingClientRect();
-                ctx.font = '16px "Source Serif 4", Georgia, serif';
-                const width = rect.width - padding * 2;
-                let currentX = padding;
-                let currentY = 30;
-                
-                const allWords = (text + text + text + text).split(' ');
-                allWords.forEach(word => {
-                    const w = ctx.measureText(word + ' ').width;
-                    if (currentX + w > width + padding) {
-                        currentX = padding;
-                        currentY += lineHeight;
-                    }
-                    if (currentY < rect.height - 5) {
-                        words.push({
-                            text: word,
-                            baseX: currentX,
-                            baseY: currentY,
-                            x: currentX,
-                            y: currentY,
-                            targetX: currentX,
-                            targetY: currentY,
-                            width: w
-                        });
-                    }
-                    currentX += w;
-                });
-            }
-            
-            function extractSilhouette() {
-                const rect = canvas.getBoundingClientRect();
-                const vw = video.videoWidth || 100;
-                const vh = video.videoHeight || 100;
-                
-                // Scale video to fit canvas height
-                const scale = rect.height / vh;
-                const sw = Math.floor(vw * scale * silhouetteScale);
-                const sh = Math.floor(rect.height * silhouetteScale);
-                
-                offscreen.width = sw;
-                offscreen.height = sh;
-                
-                offCtx.drawImage(video, 0, 0, sw, sh);
-                
-                try {
-                    const imageData = offCtx.getImageData(0, 0, sw, sh);
-                    const data = imageData.data;
-                    
-                    // Find white/light pixels (Trump on white bg)
-                    const points = [];
-                    for (let y = 0; y < sh; y++) {
-                        for (let x = 0; x < sw; x++) {
-                            const i = (y * sw + x) * 4;
-                            const brightness = (data[i] + data[i+1] + data[i+2]) / 3;
-                            // Dark pixels = silhouette
-                            if (brightness < 200) {
-                                points.push({
-                                    x: (x / silhouetteScale) + (rect.width - vw * scale) / 2,
-                                    y: y / silhouetteScale,
-                                    r: 8
-                                });
-                            }
-                        }
-                    }
-                    silhouetteData = points;
-                } catch(e) {
-                    // CORS or other error
-                }
-            }
-            
-            function animate() {
-                const rect = canvas.getBoundingClientRect();
-                ctx.clearRect(0, 0, rect.width, rect.height);
-                
-                // Extract silhouette from current video frame
-                if (video.readyState >= 2) {
-                    extractSilhouette();
-                }
-                
-                // Update word target positions based on silhouette collision
-                words.forEach(word => {
-                    let pushX = 0, pushY = 0;
-                    const wordCenterX = word.baseX + word.width / 2;
-                    const wordCenterY = word.baseY - 8;
-                    
-                    if (silhouetteData) {
-                        silhouetteData.forEach(point => {
-                            const dx = wordCenterX - point.x;
-                            const dy = wordCenterY - point.y;
-                            const dist = Math.sqrt(dx * dx + dy * dy);
-                            
-                            if (dist < point.r + 15) {
-                                const force = (point.r + 15 - dist) / (point.r + 15);
-                                const angle = Math.atan2(dy, dx);
-                                pushX += Math.cos(angle) * force * 25;
-                                pushY += Math.sin(angle) * force * 8;
-                            }
-                        });
-                    }
-                    
-                    word.targetX = word.baseX + pushX;
-                    word.targetY = word.baseY + pushY;
-                    
-                    // Smooth lerp to target
-                    word.x += (word.targetX - word.x) * 0.15;
-                    word.y += (word.targetY - word.y) * 0.15;
-                });
-                
-                // Draw silhouette (pixelated)
-                if (silhouetteData && silhouetteData.length > 0) {
-                    ctx.fillStyle = '#1a1a1a';
-                    silhouetteData.forEach(point => {
-                        ctx.fillRect(Math.floor(point.x/4)*4, Math.floor(point.y/4)*4, 4, 4);
-                    });
-                }
-                
-                // Draw words
-                ctx.font = '16px "Source Serif 4", Georgia, serif';
-                ctx.fillStyle = '#333';
-                words.forEach(word => {
-                    ctx.fillText(word.text, word.x, word.y);
-                });
-                
-                requestAnimationFrame(animate);
-            }
-            
-            video.addEventListener('loadeddata', () => {
-                video.play();
-                initWords();
-                animate();
-            });
-            
-            video.load();
-        });
     </script>
 </body>
 </html>
