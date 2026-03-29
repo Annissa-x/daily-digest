@@ -162,7 +162,10 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+        }
+        
+        .character video {
+            mix-blend-mode: multiply;
         }
         
         /* Content flows around */
@@ -446,7 +449,9 @@
         
         <div class="content-wrapper">
             <div class="character">
-                <img src="https://media.tenor.com/YVdlfy18mEUAAAAi/chika-dance.gif" alt="dancing" />
+                <video autoplay loop muted playsinline>
+                    <source src="assets/dancing.mp4" type="video/mp4">
+                </video>
             </div>
             
             <div class="content">
