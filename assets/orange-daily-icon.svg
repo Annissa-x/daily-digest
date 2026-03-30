@@ -1,43 +1,31 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
   <defs>
     <!-- Orange gradient -->
-    <radialGradient id="orangeGrad" cx="40%" cy="30%" r="60%">
-      <stop offset="0%" style="stop-color:#FFB347"/>
-      <stop offset="70%" style="stop-color:#FF8C00"/>
-      <stop offset="100%" style="stop-color:#E86100"/>
+    <radialGradient id="orangeGrad" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" style="stop-color:#FFB84D"/>
+      <stop offset="60%" style="stop-color:#FF8C00"/>
+      <stop offset="100%" style="stop-color:#E07000"/>
     </radialGradient>
-    <!-- Leaf gradient -->
-    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#4CAF50"/>
-      <stop offset="100%" style="stop-color:#2E7D32"/>
-    </linearGradient>
   </defs>
   
-  <!-- Background -->
-  <rect width="200" height="200" fill="white"/>
+  <!-- Blue background -->
+  <rect width="200" height="200" fill="#00A0E9"/>
   
   <!-- Orange fruit body -->
-  <circle cx="100" cy="110" r="75" fill="url(#orangeGrad)"/>
+  <ellipse cx="100" cy="110" rx="75" ry="72" fill="url(#orangeGrad)"/>
   
-  <!-- Bite mark -->
-  <path d="M 155 65 
-           Q 185 95, 172 135 
-           Q 162 110, 155 65" 
-        fill="white"/>
-  
-  <!-- Orange texture lines -->
-  <path d="M 50 85 Q 100 78, 145 95" stroke="#E07000" stroke-width="1.5" fill="none" opacity="0.3"/>
-  <path d="M 40 115 Q 100 105, 155 120" stroke="#E07000" stroke-width="1.5" fill="none" opacity="0.3"/>
-  <path d="M 50 145 Q 100 138, 145 152" stroke="#E07000" stroke-width="1.5" fill="none" opacity="0.3"/>
+  <!-- Bite mark (top right) -->
+  <path d="M 150 55 
+           Q 185 85, 175 125 
+           Q 160 95, 150 55" 
+        fill="#00A0E9"/>
   
   <!-- Stem -->
-  <rect x="94" y="28" width="10" height="18" rx="3" fill="#5D4037"/>
+  <rect x="94" y="30" width="12" height="18" rx="3" fill="#4A3728"/>
   
   <!-- Leaf -->
-  <path d="M 104 38 
-           Q 140 15, 160 28 
-           Q 138 42, 104 38" 
-        fill="url(#leafGrad)"/>
-  <!-- Leaf vein -->
-  <path d="M 110 35 Q 132 28, 150 32" stroke="#1B5E20" stroke-width="1.5" fill="none" opacity="0.5"/>
+  <path d="M 106 38 
+           Q 145 12, 168 25 
+           Q 142 42, 106 38" 
+        fill="#2E8B2E"/>
 </svg>

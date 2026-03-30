@@ -1,47 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280">
   <defs>
     <!-- Orange gradient -->
-    <radialGradient id="orangeGrad" cx="40%" cy="30%" r="60%">
-      <stop offset="0%" style="stop-color:#FFB347"/>
-      <stop offset="70%" style="stop-color:#FF8C00"/>
-      <stop offset="100%" style="stop-color:#E86100"/>
+    <radialGradient id="orangeGrad" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" style="stop-color:#FFB84D"/>
+      <stop offset="60%" style="stop-color:#FF8C00"/>
+      <stop offset="100%" style="stop-color:#E07000"/>
     </radialGradient>
-    <!-- Leaf gradient -->
-    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#4CAF50"/>
-      <stop offset="100%" style="stop-color:#2E7D32"/>
-    </linearGradient>
   </defs>
   
+  <!-- Blue background -->
+  <rect width="200" height="280" fill="#00A0E9"/>
+  
   <!-- Orange fruit body -->
-  <circle cx="85" cy="110" r="65" fill="url(#orangeGrad)"/>
+  <ellipse cx="100" cy="95" rx="70" ry="68" fill="url(#orangeGrad)"/>
   
-  <!-- Bite mark (white arc to show bite) -->
-  <path d="M 130 70 
-           Q 155 95, 145 125 
-           Q 138 105, 130 70" 
-        fill="white"/>
-  
-  <!-- Orange texture lines (subtle) -->
-  <path d="M 45 80 Q 85 75, 120 90" stroke="#E07000" stroke-width="1" fill="none" opacity="0.3"/>
-  <path d="M 35 110 Q 85 100, 130 115" stroke="#E07000" stroke-width="1" fill="none" opacity="0.3"/>
-  <path d="M 45 140 Q 85 135, 120 145" stroke="#E07000" stroke-width="1" fill="none" opacity="0.3"/>
+  <!-- Bite mark (top right) -->
+  <path d="M 145 45 
+           Q 175 70, 168 105 
+           Q 155 80, 145 45" 
+        fill="#00A0E9"/>
   
   <!-- Stem -->
-  <rect x="80" y="38" width="8" height="15" rx="2" fill="#5D4037"/>
+  <rect x="95" y="22" width="10" height="16" rx="2" fill="#4A3728"/>
   
   <!-- Leaf -->
-  <path d="M 88 45 
-           Q 115 25, 130 35 
-           Q 115 45, 88 45" 
-        fill="url(#leafGrad)"/>
-  <!-- Leaf vein -->
-  <path d="M 92 42 Q 108 38, 122 38" stroke="#1B5E20" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M 105 30 
+           Q 135 8, 155 18 
+           Q 135 32, 105 30" 
+        fill="#2E8B2E"/>
   
-  <!-- Chinese text: 橙果日報 -->
-  <text x="175" y="95" font-family="Noto Sans TC, Microsoft JhengHei, PingFang TC, sans-serif" font-size="42" font-weight="900" fill="#1a1a1a">橙果</text>
-  <text x="175" y="150" font-family="Noto Sans TC, Microsoft JhengHei, PingFang TC, sans-serif" font-size="42" font-weight="900" fill="#1a1a1a">日報</text>
+  <!-- Chinese characters - vertical layout -->
+  <!-- Right side: 橙果 -->
+  <text x="150" y="195" font-family="Noto Sans TC, Microsoft JhengHei, Heiti TC, sans-serif" font-size="48" font-weight="900" fill="white">橙</text>
+  <text x="150" y="248" font-family="Noto Sans TC, Microsoft JhengHei, Heiti TC, sans-serif" font-size="48" font-weight="900" fill="white">果</text>
   
-  <!-- English subtitle -->
-  <text x="175" y="175" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#666" letter-spacing="2">ORANGE DAILY</text>
+  <!-- Left side: 日報 -->
+  <text x="45" y="195" font-family="Noto Sans TC, Microsoft JhengHei, Heiti TC, sans-serif" font-size="48" font-weight="900" fill="white">日</text>
+  <text x="45" y="248" font-family="Noto Sans TC, Microsoft JhengHei, Heiti TC, sans-serif" font-size="48" font-weight="900" fill="white">報</text>
+  
+  <!-- ORANGE DAILY text at bottom -->
+  <text x="100" y="273" font-family="Arial Black, Arial, sans-serif" font-size="16" font-weight="900" fill="white" text-anchor="middle" letter-spacing="1">ORANGE DAILY</text>
 </svg>
