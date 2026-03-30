@@ -14,13 +14,13 @@
   </defs>
   
   <!-- Blue background -->
-  <rect x="0" y="0" width="168" height="280" fill="#009ee8"/>
+  <rect x="0" y="0" width="168" height="275" fill="#009ee8"/>
   
-  <!-- Orange bottom bar -->
-  <rect x="0" y="280" width="168" height="20" fill="#FF8C00"/>
+  <!-- Orange bottom bar (touching bottom) -->
+  <rect x="0" y="275" width="168" height="25" fill="#FF8C00"/>
   
   <!-- ORANGE DAILY text at bottom -->
-  <text x="84" y="294" font-family="Arial Black, Arial, sans-serif" font-size="11" font-weight="900" fill="white" text-anchor="middle" letter-spacing="1.5">ORANGE DAILY</text>
+  <text x="84" y="292" font-family="Arial Black, Arial, sans-serif" font-size="12" font-weight="900" fill="white" text-anchor="middle" letter-spacing="1.5">ORANGE DAILY</text>
   
   <!-- Orange fruit body (rounder than apple) -->
   <ellipse cx="84" cy="85" rx="58" ry="55" fill="url(#orangeGrad)"/>
