@@ -22,7 +22,7 @@
             position: relative;
         }
         
-        /* American flag vibes */
+        /* Orange Daily colors */
         .flag-stripe {
             position: fixed;
             top: 0;
@@ -30,9 +30,9 @@
             right: 0;
             height: 8px;
             background: linear-gradient(90deg, 
-                #bf0a30 0%, #bf0a30 33%, 
+                #FF8C00 0%, #FF8C00 33%, 
                 #ffffff 33%, #ffffff 66%, 
-                #002868 66%, #002868 100%);
+                #009ee8 66%, #009ee8 100%);
             z-index: 100;
         }
         
@@ -44,12 +44,6 @@
             height: auto;
             opacity: 0.9;
             z-index: 0;
-            animation: soar 3s ease-in-out infinite;
-        }
-        
-        @keyframes soar {
-            0%, 100% { transform: translateY(0) rotate(-2deg); }
-            50% { transform: translateY(-8px) rotate(2deg); }
         }
         
         .stars {
