@@ -40,15 +40,16 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            font-size: 3rem;
-            opacity: 0.15;
+            width: 120px;
+            height: auto;
+            opacity: 0.9;
             z-index: 0;
             animation: soar 3s ease-in-out infinite;
         }
         
         @keyframes soar {
-            0%, 100% { transform: translateY(0) rotate(-5deg); }
-            50% { transform: translateY(-10px) rotate(5deg); }
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
         }
         
         .stars {
@@ -441,12 +442,11 @@
 </head>
 <body>
     <div class="flag-stripe"></div>
-    <div class="eagle">🦅</div>
+    <img src="assets/orange-daily-logo.jpg" alt="Orange Daily" class="eagle">
     <div class="stars">⭐⭐⭐</div>
     <div class="container">
         <header>
-            <img src="assets/orange-daily-logo.svg" alt="Orange Daily 橙果日報" class="logo" style="max-width: 180px; height: auto; margin-bottom: 15px;">
-            <h1 class="masthead" style="display: none;">Orange Daily</h1>
+            <h1 class="masthead">Orange Daily</h1>
             <p class="date-line">Monday, March 30, 2026 · <a href="archive/" style="color: #888;">View Archive</a></p>
         </header>
         
